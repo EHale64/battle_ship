@@ -27,6 +27,7 @@ class CellTest < Minitest::Test
   def test_it_can_place_ship
     assert @cell.empty?
     @cell.place_ship(@cruiser)
+    assert_equal @cruiser, @cell.ship
     refute @cell.empty?
   end
 end
