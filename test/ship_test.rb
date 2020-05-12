@@ -34,6 +34,7 @@ class ShipTest < Minitest::Test
     refute @cruiser.sunk?
     @cruiser.hit
     assert @cruiser.sunk?
+    binding.pry
   end
 
 end
