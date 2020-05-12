@@ -17,7 +17,7 @@ class CellTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal "B4", @cell.coordinate
-    assert_equal nil, @cell.ship
+    assert_nil @cell.ship
   end
 
   def test_it_knows_if_empty
@@ -29,5 +29,13 @@ class CellTest < Minitest::Test
     @cell.place_ship(@cruiser)
     assert_equal @cruiser, @cell.ship
     refute @cell.empty?
+  end
+
+  def test_it_can_be_fired_upon
+    refute @cell.fired_upon?
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    assert @cell.fire_upon
+    assert_equal 2, @cell.ship.health
   end
 end
