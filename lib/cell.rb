@@ -25,11 +25,17 @@ class Cell
       end
   end
 
-  def render
+  def render(show = false)
     if fired_upon?
       if empty?
       "M"
+      elsif ship.sunk?
+      "X"
+      else
+      "H"
       end
+    elsif show
+      "S"
     else
       "."
     end
