@@ -17,7 +17,11 @@ class CellTest < Minitest::Test
 
   def test_it_has_attributes
     assert_equal "B4", @cell.coordinate
+<<<<<<< HEAD
     assert_equal nil, @cell.ship
+=======
+    assert_nil @cell.ship
+>>>>>>> 573e4f3ae0697d7b41881cddd07b05af8217a31d
   end
 
   def test_it_knows_if_empty
@@ -30,4 +34,18 @@ class CellTest < Minitest::Test
     assert_equal @cruiser, @cell.ship
     refute @cell.empty?
   end
+<<<<<<< HEAD
+=======
+
+  def test_it_can_be_fired_upon
+    refute @cell.fired_upon?
+    @cell.place_ship(@cruiser)
+    @cell.fire_upon
+    assert @cell.fired_upon?
+    assert_equal 2, @cell.ship.health
+    @cell.fire_upon
+    assert @cell.fired_upon?
+    assert_equal 1, @cell.ship.health
+  end
+>>>>>>> 573e4f3ae0697d7b41881cddd07b05af8217a31d
 end
