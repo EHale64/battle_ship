@@ -24,4 +24,14 @@ class Cell
         @ship.hit
       end
   end
+
+  def render
+    if fired_upon?
+      if empty?
+      "M"
+      end
+    else
+      "."
+    end
+  end
 end
