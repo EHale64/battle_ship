@@ -25,15 +25,10 @@ class Board
      @cells.has_key?(coordinate)
   end
 
-  def valid_placement?(ship, coordinates)
-    ship.length == coordinates.length
-  end
-
   def numbers_consecutive?(coordinates)
     range = 1..4
-    numbers = []
-    coordinates.each do |coordinate|
-        numbers << coordinate[1].to_i
+    numbers = coordinates.map do |coordinate|
+      coordinate[1].to_i
     end
     consecutive_numbers = (range).each_cons(coordinates.length).to_a
     consecutive_numbers.include?(numbers)
@@ -41,11 +36,14 @@ class Board
 
   def letters_consecutive?(coordinates)
     range = "A".."D"
-    letters = []
-    coordinates.each do |coordinate|
-        letters << coordinate[0]
+    letters = coordinates.map do |coordinate|
+      coordinate[0]
     end
     consecutive_letters = (range).each_cons(coordinates.length).to_a
     consecutive_letters.include?(letters)
+  end
+
+  def valid_placement?(ship, coordinates)
+    ship.length == coordinates.length
   end
 end
