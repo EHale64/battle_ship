@@ -51,4 +51,15 @@ class BoardTest < Minitest::Test
     refute @board.letters_consecutive?(["B1", "A1"])
     assert @board.letters_consecutive?(["C1", "D1"])
   end
+
+  def test_it_finds_consecutive_coordinates
+    refute @board.valid_placement?(@cruiser, ["A1", "A2", "A4"])
+    assert @board.valid_placement?(@cruiser, ["A2", "A3", "A4"])
+    refute @board.valid_placement?(@submarine, ["B1", "B3"])
+    assert @board.valid_placement?(@submarine, ["B1", "B2"])
+    refute @board.valid_placement?(@cruiser, ["A1", "B1", "D1"])
+    assert @board.valid_placement?(@cruiser, ["A1", "B1", "C1"])
+    refute @board.valid_placement?(@submarine, ["B1", "A1"])
+    assert @board.valid_placement?(@submarine, ["C1", "D1"])
+  end
 end
