@@ -26,6 +26,16 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-      ship.length == coordinates.length
+    ship.length == coordinates.length
+  end
+
+  def numbers_consecutive?(coordinates)
+    range = 1..4
+    numbers = []
+    coordinates.each do |coordinate|
+        numbers << coordinate[1].to_i
+    end
+    consecutive_numbers = (range).each_cons(coordinates.length).to_a
+    consecutive_numbers.include?(numbers)
   end
 end

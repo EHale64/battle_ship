@@ -36,4 +36,15 @@ class BoardTest < Minitest::Test
     assert @board.valid_placement?(@submarine, ["B1", "B2"])
     refute @board.valid_placement?(@submarine, ["A2", "A3", "A4"])
   end
+
+  def test_it_finds_consecutive_numbers
+    refute @board.numbers_consecutive?(["A1", "A2", "A4"])
+    assert @board.numbers_consecutive?(["A2", "A3", "A4"])
+    refute @board.numbers_consecutive?(["B1", "B3"])
+    assert @board.numbers_consecutive?(["B1", "B2"])
+  end
+
+  def test_it_finds_consecutive_letters
+    refute @board.letters_consecutive?(["A1", "A2", "A4"])
+  end
 end
