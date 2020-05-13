@@ -19,4 +19,12 @@ class BoardTest < Minitest::Test
     assert 16, @board.cells.length
     assert Cell, @board.cells["A1"]
   end
+
+  def test_it_can_validate_coordinates
+    assert @board.valid_coordinate?("A1")
+    assert @board.valid_coordinate?("D4")
+    refute @board.valid_coordinate?("A5")
+    refute @board.valid_coordinate?("E1")
+    refute @board.valid_coordinate?("A22")
+  end
 end

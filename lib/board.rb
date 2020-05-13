@@ -20,4 +20,8 @@ class Board
     @cells["D3"] = Cell.new("D3")
     @cells["D4"] = Cell.new("D4")
   end
+
+  def valid_coordinate?(coordinate)
+     @cells.has_key?(coordinate)
+  end
 end
