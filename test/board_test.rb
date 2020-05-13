@@ -42,9 +42,13 @@ class BoardTest < Minitest::Test
     assert @board.numbers_consecutive?(["A2", "A3", "A4"])
     refute @board.numbers_consecutive?(["B1", "B3"])
     assert @board.numbers_consecutive?(["B1", "B2"])
+    refute @board.numbers_consecutive?(["A3", "A2", "A1"])
   end
 
   def test_it_finds_consecutive_letters
-    refute @board.letters_consecutive?(["A1", "A2", "A4"])
+    refute @board.letters_consecutive?(["A1", "B1", "D1"])
+    assert @board.letters_consecutive?(["A1", "B1", "C1"])
+    refute @board.letters_consecutive?(["B1", "A1"])
+    assert @board.letters_consecutive?(["C1", "D1"])
   end
 end

@@ -38,4 +38,14 @@ class Board
     consecutive_numbers = (range).each_cons(coordinates.length).to_a
     consecutive_numbers.include?(numbers)
   end
+
+  def letters_consecutive?(coordinates)
+    range = "A".."D"
+    letters = []
+    coordinates.each do |coordinate|
+        letters << coordinate[0]
+    end
+    consecutive_letters = (range).each_cons(coordinates.length).to_a
+    consecutive_letters.include?(letters)
+  end
 end
