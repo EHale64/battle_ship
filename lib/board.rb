@@ -64,8 +64,10 @@ class Board
   def valid_placement?(ship, coordinates)
     if ship.length == coordinates.length
       if numbers_consecutive?(coordinates) || letters_consecutive?(coordinates)
-        true
-      end
+        if row_not_diagonal?(coordinates) || column_not_diagonal?(coordinates)
+          true
+        end
+      end 
     else
       false
     end

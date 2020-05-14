@@ -69,4 +69,11 @@ class BoardTest < Minitest::Test
     assert @board.column_not_diagonal?(["A1", "B1"])
     refute @board.column_not_diagonal?(["A1", "B2"])
   end
+
+  def test_it_knows_if_diagonal
+    refute @board.valid_placement?(@cruiser, ["A1", "B2", "C3"])
+    assert @board.valid_placement?(@cruiser, ["A1", "A2", "A3"])
+    assert @board.valid_placement?(@submarine, ["A1", "B1"])
+    refute @board.valid_placement?(@submarine, ["A1", "B2"])
+  end
 end
