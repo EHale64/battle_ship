@@ -25,6 +25,13 @@ class Board
      @cells.has_key?(coordinate)
   end
 
+  def valid_coordinates?(coordinates)
+    valid = []
+    coordinates.each do |coordinate|
+      @cells.has_key?(coordinate)
+    end
+  end
+
   def numbers_consecutive?(coordinates)
     range = 1..4
     numbers = coordinates.map do |coordinate|
@@ -61,13 +68,6 @@ class Board
     column.all?(true)
   end
 
-  def valid_coordinates?(coordinates)
-    valid = []
-    coordinates.each do |coordinate|
-      @cells.has_key?(coordinate)
-    end
-  end
-
   def valid_placement?(ship, coordinates)
     return false unless valid_coordinates?(coordinates)
     if ship.length == coordinates.length
@@ -78,6 +78,14 @@ class Board
       end
     else
       false
+    end
+  end
+
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
     end
   end
 end
