@@ -61,13 +61,21 @@ class Board
     column.all?(true)
   end
 
+  def valid_coordinates?(coordinates)
+    valid = []
+    coordinates.each do |coordinate|
+      @cells.has_key?(coordinate)
+    end
+  end
+
   def valid_placement?(ship, coordinates)
+    return false unless valid_coordinates?(coordinates)
     if ship.length == coordinates.length
       if numbers_consecutive?(coordinates) || letters_consecutive?(coordinates)
         if row_not_diagonal?(coordinates) || column_not_diagonal?(coordinates)
           true
         end
-      end 
+      end
     else
       false
     end
