@@ -24,4 +24,52 @@ class Board
   def valid_coordinate?(coordinate)
      @cells.has_key?(coordinate)
   end
+
+  def numbers_consecutive?(coordinates)
+    range = 1..4
+    numbers = coordinates.map do |coordinate|
+      coordinate[1].to_i
+    end
+    consecutive_numbers = (range).each_cons(coordinates.length).to_a
+    consecutive_numbers.include?(numbers)
+  end
+
+  def letters_consecutive?(coordinates)
+    range = "A".."D"
+    letters = coordinates.map do |coordinate|
+      coordinate[0]
+    end
+    consecutive_letters = (range).each_cons(coordinates.length).to_a
+    consecutive_letters.include?(letters)
+  end
+
+  def row_not_diagonal?(coordinates)
+    rows = []
+    coordinates.each_with_index do |coordinate, index|
+      next if coordinates[index + 1] == nil
+      rows << (coordinate[0] == coordinates[index + 1][0])
+    end
+    rows.all?(true)
+  end
+
+  def column_not_diagonal?(coordinates)
+    column = []
+    coordinates.each_with_index do |coordinate, index|
+      next if coordinates[index + 1] == nil
+      column << (coordinate[1] == coordinates[index + 1][1])
+    end
+    column.all?(true)
+  end
+
+  def valid_placement?(ship, coordinates)
+    if ship.length == coordinates.length
+      if numbers_consecutive?(coordinates) || letters_consecutive?(coordinates)
+        if row_not_diagonal?(coordinates) || column_not_diagonal?(coordinates)
+          true
+        end
+      end 
+    else
+      false
+    end
+  end
 end
