@@ -1,3 +1,4 @@
+require './lib/cell'
 class Board
   attr_reader :cells
 
@@ -70,6 +71,7 @@ class Board
 
   def valid_placement?(ship, coordinates)
     return false unless valid_coordinates?(coordinates)
+    return false unless has_no_ships?(coordinates)
     if ship.length == coordinates.length
       if numbers_consecutive?(coordinates) || letters_consecutive?(coordinates)
         if row_not_diagonal?(coordinates) || column_not_diagonal?(coordinates)
@@ -78,6 +80,12 @@ class Board
       end
     else
       false
+    end
+  end
+
+  def has_no_ships?(coordinates)
+    coordinates.all? do |coordinate|
+      @cells[coordinate].empty?
     end
   end
 
