@@ -76,4 +76,35 @@ class BoardTest < Minitest::Test
     assert @board.valid_placement?(@submarine, ["A1", "B1"])
     refute @board.valid_placement?(@submarine, ["A1", "B2"])
   end
+
+  def test_it_can_place_a_ship
+    cell_1 = @board.cells["B1"]
+    cell_2 = @board.cells["B2"]
+    cell_3 = @board.cells["B3"]
+    @board.place(@cruiser, ["B1", "B2", "B3"])
+    assert_equal @cruiser, cell_1.ship
+    assert_equal @cruiser, cell_2.ship
+    assert_equal @cruiser, cell_3.ship
+    assert_equal true , cell_3.ship == cell_2.ship
+  end
+
+  def test_tell_if_all_cells_empty
+    @board.place(@cruiser, ["B1", "B2", "B3"])
+    assert_equal true, @board.has_no_ships?(["C2", "C3", "C4"])
+    assert_equal false, @board.has_no_ships?(["B2","C2","D2"])
+  end
+
+  def test_it_does_not_overlap
+    cell_1 = @board.cells["B1"]
+    cell_2 = @board.cells["B2"]
+    cell_3 = @board.cells["B3"]
+    cell_4 = @board.cells["C2"]
+    @board.place(@cruiser, ["B1", "B2", "B3"])
+    @board.place(@submarine, ["B2", "C2"])
+    assert_equal @cruiser, cell_1.ship
+    assert_equal @cruiser, cell_2.ship
+    assert_equal @cruiser, cell_3.ship
+    refute cell_2.empty?
+    assert cell_4.empty?
+  end
 end

@@ -1,3 +1,4 @@
+require './lib/cell'
 class Board
   attr_reader :cells
 
@@ -23,6 +24,13 @@ class Board
 
   def valid_coordinate?(coordinate)
      @cells.has_key?(coordinate)
+  end
+
+  def valid_coordinates?(coordinates)
+    valid = []
+    coordinates.each do |coordinate|
+      @cells.has_key?(coordinate)
+    end
   end
 
   def numbers_consecutive?(coordinates)
@@ -61,15 +69,9 @@ class Board
     column.all?(true)
   end
 
-  def valid_coordinates?(coordinates)
-    valid = []
-    coordinates.each do |coordinate|
-      @cells.has_key?(coordinate)
-    end
-  end
-
   def valid_placement?(ship, coordinates)
     return false unless valid_coordinates?(coordinates)
+    return false unless has_no_ships?(coordinates)
     if ship.length == coordinates.length
       if numbers_consecutive?(coordinates) || letters_consecutive?(coordinates)
         if row_not_diagonal?(coordinates) || column_not_diagonal?(coordinates)
@@ -78,6 +80,20 @@ class Board
       end
     else
       false
+    end
+  end
+
+  def has_no_ships?(coordinates)
+    coordinates.all? do |coordinate|
+      @cells[coordinate].empty?
+    end
+  end
+
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
     end
   end
 end
