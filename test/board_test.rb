@@ -107,4 +107,18 @@ class BoardTest < Minitest::Test
     refute cell_2.empty?
     assert cell_4.empty?
   end
+
+  def test_it_can_render_board
+    expected = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+    @board.place(@submarine, ["B2", "C2"])
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    cell_1 = @board.cells["B1"]
+    cell_2 = @board.cells["B2"]
+    cell_3 = @board.cells["C2"]
+    cell_4 = @board.cells["A4"]
+    cell_1.fire_upon
+    cell_4.fire_upon
+    cell_2.fire_upon
+    assert_equal expected, @board.render(true)
+  end
 end
