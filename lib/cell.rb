@@ -34,7 +34,7 @@ class Cell
       else
       "H"
       end
-    elsif show
+    elsif show 
       "S"
     else
       "."
