@@ -43,7 +43,6 @@ class CellTest < Minitest::Test
   end
 
   def test_it_can_render_a_miss
-
     assert_equal ".", @cell.render
     @cell.fire_upon
     assert_equal "M", @cell.render
@@ -61,5 +60,9 @@ class CellTest < Minitest::Test
     @cruiser.hit
     assert @cruiser.sunk?
     assert_equal "X", cell_2.render
+
+    cell_1 = Cell.new("A1")
+    assert_equal ".", cell_1.render
+    assert_equal ".", cell_1.render(true)
    end
 end
