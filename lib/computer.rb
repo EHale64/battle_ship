@@ -10,26 +10,21 @@ class Computer
     @board
   end
 
-  def setup_board
-    place_cruiser
-    place_submarine
+  def random_coordinates(ship)
+    board.cells.keys.sample(ship.length)
   end
 
-  def place_cruiser
-    ship = Ship.new("Cruiser", 3)
+  def place(ship)
     x = []
     until @board.valid_placement?(ship, x)  do
-      x = board.cells.keys.sample(ship.length)
+      x = random_coordinates(ship)
     end
-      board.place(ship, x)
+    board.place(ship, x)
   end
 
-  def place_submarine
-    ship = Ship.new("Submarine", 2)
-    x = []
-    until @board.valid_placement?(ship, x)  do
-      x = board.cells.keys.sample(ship.length)
+  def setup_board(ships)
+    ships.each do |ship|
+      place(ship)
     end
-      board.place(ship, x)
   end
 end
