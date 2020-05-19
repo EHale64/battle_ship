@@ -29,7 +29,7 @@ class Board
   def valid_coordinates?(coordinates)
     valid = []
     coordinates.each do |coordinate|
-      @cells.has_key?(coordinate)
+      valid_coordinate?(coordinate)
     end
   end
 

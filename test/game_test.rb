@@ -17,9 +17,10 @@ class GameTest < Minitest::Test
   end
 
   def test_computer_sets_up_ships
+    @computer.setup_board()
     expected = @board.cells.find_all do |cell|
       cell.ship != nil
     end
-    assert_equal 5, expected.size
+    assert_equal 5, expected.count
   end
 end
