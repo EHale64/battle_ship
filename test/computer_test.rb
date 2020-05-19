@@ -44,4 +44,6 @@ class ComputerTest < Minitest::Test
                 "D . . . . \n"
     assert_equal   expected, @computer.board.render
   end
+
+
 end
