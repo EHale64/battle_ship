@@ -31,7 +31,8 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_validate_coordinates
-
+    assert @board.valid_coordinates?(["A1","A2"])
+    assert_equal false, @board.valid_coordinates?(["A1","A8"])
   end
 
   def test_it_coordinate_length_equal_ship_length

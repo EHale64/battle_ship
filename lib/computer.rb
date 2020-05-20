@@ -31,11 +31,4 @@ class Computer
     end
   end
 
-  def computer_fire
-    random_cell = board.cells.values.sample
-    until random_cell.fired_upon? == false do
-      random_cell = board.cells.values.sample
-    end
-    random_cell.fire_upon
-  end
 end

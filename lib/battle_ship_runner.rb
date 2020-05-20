@@ -10,8 +10,12 @@ print "> "
 player_choice = gets.chomp
 loop do
   if player_choice == "p"
-    game = Game.new 
+    game = Game.new
     game.player_placing_ships
+    game.turn
+    p "Welcome to  BATTLESHIP!"
+    p "Enter p to play. Enter r for rules. Enter q to quit."
+    print "> "
   elsif player_choice == "q"
     break
   elsif player_choice == "r"
@@ -33,5 +37,4 @@ loop do
    print "> "
   end
   player_choice = gets.chomp
-
 end

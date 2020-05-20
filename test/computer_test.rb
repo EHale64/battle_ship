@@ -42,28 +42,4 @@ class ComputerTest < Minitest::Test
     assert_equal   "Cruiser", cell_2.ship.name
     assert_equal   "Cruiser", cell_3.ship.name
   end
-
-  def test_it_can_find_random_cell
-    @computer.expects(:computer_fire).returns(@computer.board.cells["B1"])
-    cell_1 = @computer.board.cells["B1"]
-    cell_1.fired_upon?
-    assert_equal cell_1, @computer.computer_fire
-  end
-
-  def test_it_can_fire_on_random_cell
-    @computer.computer_fire
-    result = @computer.board.cells.map do | _ , cell|
-      cell.fired_upon?
-    end
-    assert_equal 1, result.count(true)
-  end
-
-  def test_it_wont_fire_on_cell_twice
-    10.times do @computer.computer_fire
-    end
-    result = @computer.board.cells.map do | _ , cell|
-      cell.fired_upon?
-    end
-    assert_equal 10, result.count(true)
-  end
 end

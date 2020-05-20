@@ -28,7 +28,7 @@ class Board
 
   def valid_coordinates?(coordinates)
     coordinates.all? do |coordinate|
-       valid_coordinate?(coordinate)
+      valid_coordinate?(coordinate)
     end
   end
 
