@@ -27,9 +27,8 @@ class Board
   end
 
   def valid_coordinates?(coordinates)
-    valid = []
-    coordinates.each do |coordinate|
-      @cells.has_key?(coordinate)
+    coordinates.all? do |coordinate|
+      valid_coordinate?(coordinate)
     end
   end
 
@@ -70,12 +69,14 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    return false unless valid_coordinates?(coordinates)
-    return false unless has_no_ships?(coordinates)
-    if ship.length == coordinates.length
-      if numbers_consecutive?(coordinates) || letters_consecutive?(coordinates)
-        if row_not_diagonal?(coordinates) || column_not_diagonal?(coordinates)
-          true
+    if valid_coordinates?(coordinates)
+      if has_no_ships?(coordinates)
+        if ship.length == coordinates.length
+          if numbers_consecutive?(coordinates) || letters_consecutive?(coordinates)
+            if row_not_diagonal?(coordinates) || column_not_diagonal?(coordinates)
+              true
+            end
+          end
         end
       end
     else

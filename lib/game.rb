@@ -70,29 +70,31 @@ class Game
     puts "\nEnter the coordinate for your shot: "
     print "> "
     player_shot = gets.chomp
-      if @computer_board.valid_coordinate?(player_shot) &&
-        (@computer_board.cells[player_shot].fired_upon? == false)
-        @computer_board.cells[player_shot].fire_upon
-      elsif @computer_board.cells[player_shot].fired_upon? == true
-        p "YOU HAVE ALREADY FIRED ON THAT SPOT. PLEASE TRY AGAIN: "
-        print "> "
-          player_shot = gets.chomp
-      else
+      # if @computer_board.cells[player_shot].fired_upon? == true
+      #     p "YOU HAVE ALREADY FIRED ON THAT SPOT. PLEASE TRY AGAIN: "
+      #   print "> "
+      until @computer_board.valid_coordinate?(player_shot) do
+          until (@computer_board.cells[player_shot].fired_upon? == false)
+            p "YOU HAVE ALREADY FIRED ON THAT SPOT. PLEASE TRY AGAIN: "
+            p   print "> "
+            player_shot = gets.chomp
+          end 
+       @computer_board.valid_coordinate?(player_shot) == false
         p "THOSE ARE INVALID COORDINATES. PLEASE TRY AGAIN: "
         print "> "
-          player_shot = gets.chomp
+        player_shot = gets.chomp
+      end
+      @computer_board.cells[player_shot].fire_upon
+
+      if @computer_board.cells[player_shot].render == "M"
+        p "Your shot on #{player_shot} was a miss"
+      elsif @computer_board.cells[player_shot].render == "H"
+        p "Your shot on #{player_shot} was a hit"
+      elsif @computer_board.cells[player_shot].render == "X"
+        p "You sunk my #{@computer_board.cells[player_shot].ship.name}!"
       end
 
-      # @computer_board.cells[player_shot].fire_upon
-        if @computer_board.cells[player_shot].render == "M"
-          p "Your shot on #{player_shot} was a miss"
-        elsif @computer_board.cells[player_shot].render == "H"
-          p "Your shot on #{player_shot} was a hit"
-        elsif @computer_board.cells[player_shot].render == "X"
-          p "You sunk my #{@computer_board.cells[player_shot].ship.name}!"
-        end
-
-     bang = computer_fire
+      bang = computer_fire
         if bang.render == "M"
           p "My shot on #{bang.coordinate} was a miss"
         elsif bang.render == "H"
@@ -100,6 +102,15 @@ class Game
         elsif bang.render == "X"
           p "I sunk your #{bang.ship.name}!"
         end
+
+      if @computer_cruiser.sunk? && @computer_submarine.sunk?
+        p "You win!"
+        break
+      elsif
+        @player_cruiser.sunk? && @player_submarine.sunk?
+        p "I win!"
+        break
+      end
     end
   end
 end
