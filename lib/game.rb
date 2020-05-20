@@ -6,7 +6,12 @@ require './lib/ship'
 class Game
 
   attr_reader :player_board,
-              :computer_board
+              :computer_board,
+              :computer,
+              :player_cruiser,
+              :computer_cruiser,
+              :player_submarine,
+              :computer_submarine
 
   def initialize
     @computer = Computer.new
