@@ -109,16 +109,46 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_render_board
-    expected = "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n"
+    expected = "  1 2 3 4 \n" +
+               "A . . . . \n" +
+               "B . . . . \n" +
+               "C . . . . \n" +
+               "D . . . . \n"
+
     @board.place(@submarine, ["B2", "C2"])
     @board.place(@cruiser, ["A1", "A2", "A3"])
-    cell_1 = @board.cells["B1"]
+    assert_equal expected, @board.render
+  end
+
+  def test_it_can_render_truth
+    expected = "  1 2 3 4 \n" +
+               "A S S S . \n" +
+               "B . S . . \n" +
+               "C . S . . \n" +
+               "D . . . . \n"
+
+    @board.place(@submarine, ["B2", "C2"])
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    assert_equal expected, @board.render(true)
+  end
+
+  def test_it_can_render_hits_misses_and_sunk
+    expected = "  1 2 3 4 \n" +
+               "A H S S M \n" +
+               "B . X . . \n" +
+               "C . X . . \n" +
+               "D . . . . \n"
+
+    @board.place(@submarine, ["B2", "C2"])
+    @board.place(@cruiser, ["A1", "A2", "A3"])
+    cell_1 = @board.cells["A1"]
     cell_2 = @board.cells["B2"]
     cell_3 = @board.cells["C2"]
     cell_4 = @board.cells["A4"]
     cell_1.fire_upon
-    cell_4.fire_upon
     cell_2.fire_upon
+    cell_3.fire_upon
+    cell_4.fire_upon
     assert_equal expected, @board.render(true)
   end
 end
