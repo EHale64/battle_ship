@@ -1,7 +1,10 @@
 require './lib/ship'
 require './lib/cell'
 require './lib/board'
+
 class Computer
+  attr_reader :board
+
   def initialize
     @board = Board.new
   end

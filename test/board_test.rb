@@ -109,7 +109,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_render_board
-    expected = " 1 2 3 4 \n" +
+    expected = "  1 2 3 4 \n" +
                "A . . . . \n" +
                "B . . . . \n" +
                "C . . . . \n" +
@@ -121,7 +121,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_render_truth
-    expected = " 1 2 3 4 \n" +
+    expected = "  1 2 3 4 \n" +
                "A S S S . \n" +
                "B . S . . \n" +
                "C . S . . \n" +
@@ -133,7 +133,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_it_can_render_hits_misses_and_sunk
-    expected = " 1 2 3 4 \n" +
+    expected = "  1 2 3 4 \n" +
                "A H S S M \n" +
                "B . X . . \n" +
                "C . X . . \n" +

@@ -7,12 +7,13 @@ require './lib/board'
 require './lib/computer'
 require './lib/game'
 require'pry'
+
 class ComputerTest < Minitest::Test
   def setup
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
     @computer = Computer.new
-    @game = Game.new(@player_board, @computer_board)
+    @game = Game.new#(@player_board, @computer_board)
   end
 
   def test_it_exists
