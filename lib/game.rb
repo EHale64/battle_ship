@@ -70,17 +70,16 @@ class Game
     puts "\nEnter the coordinate for your shot: "
     print "> "
     player_shot = gets.chomp
-      # if @computer_board.cells[player_shot].fired_upon? == true
-      #     p "YOU HAVE ALREADY FIRED ON THAT SPOT. PLEASE TRY AGAIN: "
-      #   print "> "
       until @computer_board.valid_coordinate?(player_shot) do
-          until (@computer_board.cells[player_shot].fired_upon? == false)
-            p "YOU HAVE ALREADY FIRED ON THAT SPOT. PLEASE TRY AGAIN: "
-            p   print "> "
-            player_shot = gets.chomp
-          end
-       @computer_board.valid_coordinate?(player_shot) == false
+        @computer_board.valid_coordinate?(player_shot) == false
         p "THOSE ARE INVALID COORDINATES. PLEASE TRY AGAIN: "
+        print "> "
+        player_shot = gets.chomp
+      end
+
+      until @computer_board.cells[player_shot].fired_upon? == false#@computer_board.valid_coordinate?(player_shot) == true &&
+        #require'pry'; binding.pry
+        p "YOU HAVE ALREADY FIRED ON THAT SPOT. PLEASE TRY AGAIN: "
         print "> "
         player_shot = gets.chomp
       end
