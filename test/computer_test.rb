@@ -6,14 +6,14 @@ require './lib/cell'
 require './lib/board'
 require './lib/computer'
 require './lib/game'
-require'pry'
+require 'pry'
 
 class ComputerTest < Minitest::Test
   def setup
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
     @computer = Computer.new
-    @game = Game.new#(@player_board, @computer_board)
+    @game = Game.new
   end
 
   def test_it_exists
@@ -38,32 +38,8 @@ class ComputerTest < Minitest::Test
     cell_1 = @computer.board.cells["B1"]
     cell_2 = @computer.board.cells["B2"]
     cell_3 = @computer.board.cells["B3"]
-    assert_equal   "Cruiser", cell_1.ship.name
-    assert_equal   "Cruiser", cell_2.ship.name
-    assert_equal   "Cruiser", cell_3.ship.name
-  end
-
-  def test_it_can_find_random_cell
-    @computer.expects(:computer_fire).returns(@computer.board.cells["B1"])
-    cell_1 = @computer.board.cells["B1"]
-    cell_1.fired_upon?
-    assert_equal cell_1, @computer.computer_fire
-  end
-
-  def test_it_can_fire_on_random_cell
-    @computer.computer_fire
-    result = @computer.board.cells.map do | _ , cell|
-      cell.fired_upon?
-    end
-    assert_equal 1, result.count(true)
-  end
-
-  def test_it_wont_fire_on_cell_twice
-    10.times do @computer.computer_fire
-    end
-    result = @computer.board.cells.map do | _ , cell|
-      cell.fired_upon?
-    end
-    assert_equal 10, result.count(true)
+    assert_equal "Cruiser", cell_1.ship.name
+    assert_equal "Cruiser", cell_2.ship.name
+    assert_equal "Cruiser", cell_3.ship.name
   end
 end

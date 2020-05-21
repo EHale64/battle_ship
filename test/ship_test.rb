@@ -10,12 +10,10 @@ class ShipTest < Minitest::Test
   end
 
   def test_it_exists
-
     assert_instance_of Ship, @cruiser
   end
 
   def test_it_has_attributes
-
     assert_equal "Cruiser", @cruiser.name
     assert_equal 3, @cruiser.length
     assert_equal 3, @cruiser.health
@@ -34,7 +32,6 @@ class ShipTest < Minitest::Test
     refute @cruiser.sunk?
     @cruiser.hit
     assert @cruiser.sunk?
-    binding.pry
   end
 
 end

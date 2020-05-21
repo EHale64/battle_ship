@@ -26,16 +26,6 @@ class Computer
   end
 
   def setup_board(ships)
-    ships.each do |ship|
-      place(ship)
-    end
-  end
-
-  def computer_fire
-    random_cell = board.cells.values.sample
-    until random_cell.fired_upon? == false do
-      random_cell = board.cells.values.sample
-    end
-    random_cell.fire_upon
+    ships.each { |ship| place(ship) }
   end
 end
