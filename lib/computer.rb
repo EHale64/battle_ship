@@ -26,9 +26,6 @@ class Computer
   end
 
   def setup_board(ships)
-    ships.each do |ship|
-      place(ship)
-    end
+    ships.each { |ship| place(ship) }
   end
-
 end

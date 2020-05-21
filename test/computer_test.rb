@@ -6,14 +6,14 @@ require './lib/cell'
 require './lib/board'
 require './lib/computer'
 require './lib/game'
-require'pry'
+require 'pry'
 
 class ComputerTest < Minitest::Test
   def setup
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
     @computer = Computer.new
-    @game = Game.new#(@player_board, @computer_board)
+    @game = Game.new
   end
 
   def test_it_exists
@@ -38,8 +38,8 @@ class ComputerTest < Minitest::Test
     cell_1 = @computer.board.cells["B1"]
     cell_2 = @computer.board.cells["B2"]
     cell_3 = @computer.board.cells["B3"]
-    assert_equal   "Cruiser", cell_1.ship.name
-    assert_equal   "Cruiser", cell_2.ship.name
-    assert_equal   "Cruiser", cell_3.ship.name
+    assert_equal "Cruiser", cell_1.ship.name
+    assert_equal "Cruiser", cell_2.ship.name
+    assert_equal "Cruiser", cell_3.ship.name
   end
 end
