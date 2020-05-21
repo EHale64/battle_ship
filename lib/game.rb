@@ -77,8 +77,7 @@ class Game
         player_shot = gets.chomp
       end
 
-      until @computer_board.cells[player_shot].fired_upon? == false#@computer_board.valid_coordinate?(player_shot) == true &&
-        #require'pry'; binding.pry
+      until @computer_board.cells[player_shot].fired_upon? == false
         p "YOU HAVE ALREADY FIRED ON THAT SPOT. PLEASE TRY AGAIN: "
         print "> "
         player_shot = gets.chomp

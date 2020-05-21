@@ -34,18 +34,14 @@ class Board
 
   def numbers_consecutive?(coordinates)
     range = 1..4
-    numbers = coordinates.map do |coordinate|
-      coordinate[1].to_i
-    end
+    numbers = coordinates.map { |coordinate| coordinate[1].to_i }
     consecutive_numbers = (range).each_cons(coordinates.length).to_a
     consecutive_numbers.include?(numbers)
   end
 
   def letters_consecutive?(coordinates)
     range = "A".."D"
-    letters = coordinates.map do |coordinate|
-      coordinate[0]
-    end
+    letters = coordinates.map { |coordinate| coordinate[0] }
     consecutive_letters = (range).each_cons(coordinates.length).to_a
     consecutive_letters.include?(letters)
   end
