@@ -4,7 +4,6 @@ require './lib/cell'
 require './lib/ship'
 
 class Game
-
   attr_reader :computer,
               :player_board,
               :computer_board,
@@ -33,6 +32,7 @@ class Game
     print "\nEnter the squares for the Cruiser (3 spaces): "
     print "\n> "
     placement = gets.chomp
+
     until @player_board.place(@player_cruiser, placement.split) do
       p "THOSE ARE INVALID COORDINATES. PLEASE TRY AGAIN: "
       print "> "
@@ -69,6 +69,7 @@ class Game
     print @player_board.render(true)
     puts "\nEnter the coordinate for your shot: "
     print "> "
+    
     player_shot = gets.chomp
       until @computer_board.valid_coordinate?(player_shot) do
         @computer_board.valid_coordinate?(player_shot) == false

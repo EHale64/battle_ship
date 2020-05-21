@@ -41,11 +41,11 @@ class GameTest < Minitest::Test
   end
 
   def test_it_wont_fire_on_cell_twice
-    10.times do @game.computer_fire
+    16.times do @game.computer_fire
     end
     result = @game.player_board.cells.map do | _ , cell|
       cell.fired_upon?
     end
-    assert_equal 10, result.count(true)
+    assert_equal 16, result.count(true)
   end
 end
